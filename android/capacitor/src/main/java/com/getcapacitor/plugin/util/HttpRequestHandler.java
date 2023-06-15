@@ -283,7 +283,7 @@ public class HttpRequestHandler {
 
         for (Map.Entry<String, List<String>> entry : connection.getHeaderFields().entrySet()) {
             String valuesString = TextUtils.join(", ", entry.getValue());
-            output.put(entry.getKey(), valuesString);
+            output.put(entry.getKey().toLowerCase(), valuesString);
         }
 
         return output;
