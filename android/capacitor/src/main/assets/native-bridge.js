@@ -387,6 +387,10 @@ var nativeBridge = (function (exports) {
                                 data: (options === null || options === void 0 ? void 0 : options.body) ? options.body : undefined,
                                 headers: headers,
                             });
+                            nativeResponse.headers = Object.entries(nativeResponse.headers).reduce((acc, [key, value]) => {
+                                acc[key.toLowerCase()] = value;
+                                return acc;
+                              }, {});
                             let data = ((_a = nativeResponse.headers['content-type']) === null || _a === void 0 ? void 0 : _a.startsWith('application/json'))
                                 ? JSON.stringify(nativeResponse.data) : nativeResponse.data;
                             // use null data for 204 No Content HTTP response
